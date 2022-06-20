@@ -19,9 +19,6 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.location.*
 import com.google.firebase.analytics.FirebaseAnalytics
 
-
-
-
 class MainActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallBack: LocationCallback
@@ -31,12 +28,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        MobileAds.initialize(this){}
-
-        val mAdView = findViewById<AdView>(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         locationCallBack = object : LocationCallback() {
@@ -44,6 +35,13 @@ class MainActivity : AppCompatActivity() {
                 displaySpeed(p0.locations[0])
             }
         }
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        MobileAds.initialize(this){}
+
+        val mAdView = findViewById<AdView>(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
     override fun onPause() {
@@ -93,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     fun displaySpeed(location: Location) {
         var speed = (location.speed * 3.6F).toDouble()
-        var speedString: String
+        val speedString: String
         if (speed < 10) {
             if (speed < 1) {
                 speed = 0.0
