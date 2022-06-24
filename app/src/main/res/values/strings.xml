@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">간편 속도계</string>
+    <string name="defaultSpeed">0.0 km/h</string>
+    <string name="defaultAccuracy">0 m</string>
 </resources>
