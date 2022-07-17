@@ -16,6 +16,7 @@
   - 초기화 버튼
 - 버전
    - 1.0
-     <center><img src="/app_screen.jpg" width="30%" height="30%"></center>
+     <center><img src="/app_screen_v1.jpg" width="30%" height="30%"></center>
    
    - 2.0
+     <center><img src="/app_screen_v2.jpg" width="30%" height="30%"></center>
