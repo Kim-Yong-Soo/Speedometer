@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private var maxSpeed = 0.0
     private lateinit var latLngList: MutableList<LatLng>
     private lateinit var speedList: MutableList<Double>
-    private lateinit var polylineList: MutableList<PolylineOptions>
     private var mapClicked = false
 
     private lateinit var maxSpeedView: TextView
@@ -56,7 +55,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
         latLngList = mutableListOf()
         speedList = mutableListOf()
-        polylineList = mutableListOf()
 
         if (isNetworkAvailable(this)) {
             val mapFragmentManager = supportFragmentManager
@@ -134,10 +132,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun isNetworkAvailable(context: Context): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val nw      = connectivityManager.activeNetwork ?: return false
+            val nw = connectivityManager.activeNetwork ?: return false
             val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
 
             return when {
@@ -244,7 +243,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         polylineOptions.color(Color.RED)
         polylineOptions.width(16F)
         polylineOptions.addAll(latLngList)
-        polylineList.add(polylineOptions)
         mMap.addPolyline(polylineOptions)
     }
 
@@ -264,7 +262,17 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.resetAction -> {
-                resetAll()
+                AlertDialog.Builder(this)
+                    .setTitle("초기화 하시겠습니까?")
+                    .setPositiveButton(
+                        "예"
+                    ) { _, _ -> resetAll() }
+                    .setNegativeButton(
+                        "아니요"
+                    ) { _, _ -> }
+                    .setMessage("이동 경로와 모든 속도가 초기화됩니다.")
+                    .create()
+                    .show()
             }
         }
         return super.onOptionsItemSelected(item)
