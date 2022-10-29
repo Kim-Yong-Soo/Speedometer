@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">간편 속도계</string>
-    <string name="defaultSpeed">0.0 km/h</string>
+    <string name="defaultSpeed">0 km/h</string>
+    <string name="defaultAvgSpeed">0.0 km/h</string>
     <string name="defaultAccuracy">0 m</string>
+    <string name="maxSpeed">최고 속도</string>
+    <string name="avgSpeed">평균 속도</string>
+    <string name="gpsAccuracy">위치 오차</string>
 </resources>
