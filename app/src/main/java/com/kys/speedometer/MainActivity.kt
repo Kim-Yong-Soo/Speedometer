@@ -253,7 +253,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             status = false
         }
 
-        speedView.setTextColor(if (status) Color.BLACK else Color.parseColor("#808080"))
+        speedView.setTextColor(if (status) getColor(R.color.colorSpeedText) else Color.parseColor("#808080"))
     }
 
     private fun drawPolyline() {
@@ -311,7 +311,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         maxSpeed = 0.0
 
         speedView.text = getString(R.string.defaultSpeed)
-        speedView.setTextColor(Color.BLACK)
+        speedView.setTextColor(getColor(R.color.colorSpeedText))
         maxSpeedView.text = getString(R.string.defaultSpeed)
         avgSpeedView.text = getString(R.string.defaultAvgSpeed)
     }
